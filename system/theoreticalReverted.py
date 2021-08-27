@@ -14,10 +14,11 @@ a = destroy(basis_size)
 # We convert from the anharm and omega parameters into E_j and E_c we are familiar with
 # anharm = -E_c # https://qiskit.org/textbook/ch-quantum-hardware/transmon-physics.html#4.-The-Quantized-Transmon-
 # omega_not = np.sqrt(8*E_c*E_j)
-anharm = - 0.19 # -190 MHz
+anharm = - 0.19  # -190 MHz
 omega_not = 4.54 # 4.54 GHz
 E_c = -1*anharm
 E_j = (omega_not ** 2) / (8*E_c)
+
 
 def unperturbed_hamiltonian(E_c, E_j, basis_size=basis_size):
     a = destroy(N=basis_size)

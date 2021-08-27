@@ -2,7 +2,7 @@ import numpy as np
 from qutip import *
 
 '''
-The system as specified by Michael Hatridge in our first meeting.
+The system as specified by Michael Hatridge in our first meeting. Here we correct multiply by factors of 2 pi. 
 '''
 
 # Parameters for Transmon
@@ -17,8 +17,8 @@ c = destroy(basis_size)
 
 # in units of MHz
 # ? should be multiplied by 2 pi
-anharm = - 0.19 # -190 MHz
-omega_not = 4.54 # 4.54 GHz, this value is typically express omega/2pi ~= 5 GHZ kjaergaardSuperconductingQubitsCurrent2020
+anharm = - 0.19 * 2 * np.pi # -190 MHz
+omega_not = 4.54 * 2 * np.pi # 4.54 GHz
 
 omega = omega_not + anharm
 

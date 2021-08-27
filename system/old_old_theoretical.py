@@ -15,7 +15,6 @@ basis_size = 10
 E_j = 51.486
 E_c = 0.79168
 
-
 def unperturbed_hamiltonian(E_c, E_j, basis_size=basis_size):
     a = destroy(N=basis_size)
     n_hat = Qobj((E_j / (32 * E_c)) ** (1 / 4) * (a.dag() - a))  # should have leading i
