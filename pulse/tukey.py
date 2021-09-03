@@ -8,9 +8,7 @@ _t_max = 0
 _amp = 0
 _wd = 0
 
-# https://github.com/scipy/scipy/blob/v1.7.1/scipy/signal/windows/windows.py#L795-L875
-# taking the code for how tukey is generated leads to much faster integration than trying to fit to pulse, plus it avoids bin to big errors
-# much better than tukey_naive which is also just broken atm
+# based on https://github.com/scipy/scipy/blob/v1.7.1/scipy/signal/windows/windows.py#L795-L875
 
 def pulse_func(t, args=None):
     if t > _t_max:
