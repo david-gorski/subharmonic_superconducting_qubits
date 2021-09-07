@@ -9,21 +9,7 @@ _amp = 0
 _wd = 0
 _normalization = 0
 
-# based on https://github.com/scipy/scipy/blob/v1.7.1/scipy/signal/windows/windows.py#L795-L875
-
-# def pulse_func(t, args=None):
-#     if t > _t_max:
-#         return 0
-#     elif t > _t_max-_width:
-#         # ramping down
-#         return _amp * 0.5 * (1 + np.cos(np.pi * (-2.0/_ramp_coef + 1 + 2.0*t/_ramp_coef/(_t_max)))) * np.cos(t*_wd)
-#     elif t > _width:
-#         # middle flat top
-#         return _amp * 1 * np.cos(t*_wd)
-#     else:
-#         # ramping up
-#         return _amp * 0.5 * (1 + np.cos(np.pi * (-1 + 2.0*t/_ramp_coef/(_t_max)))) * np.cos(t*_wd)
-
+# ! Not fully tested
 
 def pulse_func(t, args=None):
     return (

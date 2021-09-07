@@ -1,35 +1,25 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy.signal as sps
 
-_args = {}
+_width = 0
+_amp = 0
+_wd = 0
+_k = 0
+_b = 0
 
-# todo this is horribly broken!
+# based on Mingkang's mathematica notebook
+
 def pulse_func(t, args=None):
-    return np.cos(_args["wd"] * t) * (
-            _args["g"]
-            * (
-                (np.tanh((t - _args["s"]) * _args["cs"]) + 1) / 2
-                - (np.tanh((t - _args["d"]) * _args["cd"]) + 1) / 2
-            )
-        ) * _args["n"] * _args["v"]
+    return _amp * ( np.tanh(_k*t-_b) - np.tanh(_k*(t-_width)+_b) ) / 2 * np.cos(_wd*t)
 
-def setup(amplitude, drive_frequency, ramp_coef, ramp_up_midpoint, ramp_down_midpoint):
-    global _args
-    _args = {
-        "wd": drive_frequency,
-        "s" : ramp_coef,
-        "d" : ramp_coef,
-        "cs": ramp_up_midpoint,
-        "cd": ramp_down_midpoint,
-        "g" : 1,
-        "v" : amplitude
-    }
+def setup(amplitude, drive_frequency, ramp_slope, cut_factor, tlist):
+    global _k, _amp, _wd, _b, _width
+    _k = ramp_slope
+    _b = cut_factor
+    _amp = amplitude
+    _wd = drive_frequency
+    _width = tlist[-1]
 
-    # todo: setup proper normalization
-    _args["n"] = 1
-
-def plot(tlist):
-    pulse_values = []
-    for t in tlist:
-        pulse_values.append(pulse_func(t))
-    plt.plot(tlist, pulse_values)
+def get_pulse(tlist):
+    return np.vectorize(pulse_func)(tlist)

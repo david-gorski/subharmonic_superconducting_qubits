@@ -5,6 +5,7 @@ import scipy.signal as sps
 _width = 0
 _ramp_coef = 0
 _t_max = 0
+_t_min = 0
 _amp = 0
 _wd = 0
 
@@ -12,6 +13,8 @@ _wd = 0
 
 def pulse_func(t, args=None):
     if t > _t_max:
+        return 0
+    elif t < _t_min:
         return 0
     elif t > _t_max-_width:
         # ramping down
@@ -29,6 +32,7 @@ def setup(amplitude, drive_frequency, ramp_coef, tlist):
     _amp = amplitude
     _wd = drive_frequency
     _t_max = tlist[-1]
+    _t_min = tlist[0]
     _width = (_ramp_coef*(_t_max)/2.0)
 
 def get_pulse(tlist):

@@ -8,12 +8,13 @@ def time_evolve(
     tlist,
     starting_state,
     args={},
-    pbar=False
+    pbar=False,
+    store_states=True
 ):
     states_to_solve_for = []
 
     options = Options(
-        store_states=True, store_final_state=True,# atol=1e-10, rtol=1e-10, norm_tol=1e-10
+        store_states=store_states, store_final_state=True,# atol=1e-10, rtol=1e-10, norm_tol=1e-10
     )  # integrator will store results at each point
 
     # setup progress bar
