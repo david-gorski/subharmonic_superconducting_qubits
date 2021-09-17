@@ -33,7 +33,6 @@ def setup(system, pulse, offset, total_pulse_time, bin_size, smoothing_time, bin
     config.pulse_t_slots = int( (total_pulse_time / bin_size) )
     config.padding_t_slots = int( ((smoothing_time*2) / bin_size) )
     config.num_t_slots = config.pulse_t_slots + config.padding_t_slots
-    print("num_t_slots", config.num_t_slots)
     config.total_pulse_time = total_pulse_time
     config.bin_size = bin_size
     config.bin_lowpass_subdivisions = bin_lowpass_subdivisions
@@ -118,13 +117,13 @@ def perturbation_func(t, args=None):
 def nearest(t, ts, vs):
     return vs[(np.abs(ts - t)).argmin()]
 
-def optimize():
+def optimize(method="Nelder-Mead"):
     global config
     parameters = list(config.last_pulse)
     parameters.append(config.last_offset)
     parameters = np.array(parameters)
     constants = None
-    result1 = sp.optimize.minimize(cost, parameters, constants, method="Nelder-Mead", options={"disp":True})
+    result1 = sp.optimize.minimize(cost, parameters, constants, method=method, options={"disp":True})
 
     config.optimization_result = result1
     return result1

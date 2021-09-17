@@ -2,14 +2,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.signal as sps
 
-_M = 0 #width
-_std = 0 #sharpness
+_c = 0 #width
+_d = 0 #sharpness
 _t_max = 0
 _amp = 0
 _wd = 0
 _normalization = 0
 
-# taken from scipy https://docs.scipy.org/doc//scipy/reference/reference/generated/scipy.signal.windows.gaussian.html
+# ! Not fully tested
 
 def pulse_func(t, args=None):
     return (
