@@ -3,6 +3,7 @@ pictures/
 save_data/
 .vscode/
 *.mp4
+*.pyx
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
