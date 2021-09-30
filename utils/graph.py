@@ -8,7 +8,7 @@ def graph_solution(solution, system):
     expectation_values = expect.get_all_expectation_values(solution.states, system.basis_states)
     fig, ax = plt.subplots(figsize=(12, 5))
     ax.set_xlabel("duration (ns)")
-    ax.set_ylabel("fidelity")
+    ax.set_ylabel("expectation value")
     for i in range(0, len(expectation_values)):
         ax.plot(solution.times, expectation_values[i], label="$\psi_{%i}$" % i)
     plt.legend()
