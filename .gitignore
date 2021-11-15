@@ -4,6 +4,7 @@ save_data/
 .vscode/
 *.mp4
 *.pyx
+mingkang_graphing/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

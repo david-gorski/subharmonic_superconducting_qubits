@@ -1,10 +1,7 @@
 # subharmonic_superconducting_qubits
 
-# Tasks
-## 1
-Generate Fidelity Landscapes for real transmon parameters
+# Most Recent Work In...
 
-### Notes
-- Plot Frequency instead of Offset
-- Properly label graphs
-- actual data is $\alpha = -190$ MHz (anharmonicity), and $ \omega_\alpha = 4.54$ GHz
+1. landscapes/FlatTop
+2. floquet/floquet_analysis_of_pulse_impact
+3. parameters/as_function_of_amplitude
