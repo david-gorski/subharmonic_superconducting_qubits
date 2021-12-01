@@ -22,8 +22,9 @@ def time_evolve(
     )  # integrator will store results at each point
 
     # setup progress bar
-    pbar = progress_bar.TextProgressBar()
-    if pbar is not True:
+    if pbar is True:
+        pbar = progress_bar.TextProgressBar()
+    else:
         pbar = None
 
     return mesolve( # actually just reverts to shrodinger solver under the hood for our closed system
