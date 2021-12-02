@@ -11,7 +11,7 @@ _b = 0
 # based on Mingkang's mathematica notebook
 
 def pulse_func(t, args=None):
-    return _amp * ( np.tanh(_k*t-_b) - np.tanh(_k*(t-_width)+_b) ) / 2 * np.cos(_wd*t)
+    return _amp * np.cos(_wd*t) * (( np.tanh(_k*t-_b) - np.tanh(_k*(t-_width)+_b) ) / 2 )
 
 def setup(amplitude, drive_frequency, ramp_slope, cut_factor, tlist):
     global _k, _amp, _wd, _b, _width
