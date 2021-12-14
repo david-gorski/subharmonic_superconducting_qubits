@@ -4,11 +4,17 @@ import scipy as sp
 import qutip
 import qutip.floquet as floq
 
+_find_nearest_error = None
+
 def find_nearest(array, value):
     array = np.asarray(array)
     idx = (np.abs(array - value)).argmin()
     if np.amin(np.abs(array - value)) > 1e-12:
-        print("error, duration does not exactly exist!", value, array[idx])
+        _find_nearest_error = {
+            "message": "error, duration does not exactly exist!",
+            "value": value,
+            "found_value": array[idx]
+            }
     return idx
 
 def overlap(state1, state2):
@@ -19,7 +25,7 @@ def floquetify(system, solution, pulse, tlist):
     freq = pulse._wd
 
     # get times on peaks of drive
-    dur_points = np.arange(0, tlist[-1], (2*np.pi)/(freq))
+    dur_points = np.arange(0, np.amax(tlist), (2*np.pi)/(freq))
     dur_points = dur_points[1:-1]
     durations = tlist
 
@@ -86,5 +92,6 @@ def floquetify(system, solution, pulse, tlist):
     return {
         "overlaps": overlaps,
         "expectation_values": expectation_values,
-        "ordered_energies": ordered_energies
+        "ordered_energies": ordered_energies,
+        "dur_points": dur_points
     }
