@@ -37,4 +37,4 @@ def save(something, name):
     save_via_dill(something, name)
 
 def load(name):
-    load_via_dill(name)
+    return load_via_dill(name)

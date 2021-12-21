@@ -67,7 +67,7 @@ def cost(parameters, constants=None):
     offset = other_params[0]
     _current_drive_frequency = config.system.first_energy_spacing/3 - offset
 
-    time = np.linspace(0, config.time[-1], int(config.time[-1]*10))
+    time = np.linspace(0, config.time[-1], int(config.time[-1]*20))
     solution = solver.time_evolve(H_d=config.system.H0, H_c=config.system.H1, pertubation_func=perturbation_func, tlist=time, starting_state = config.starting_state, args={}, pbar=False, store_states=False)
     
     fidelity = expect.expectation_value(solution.final_state, config.target_state)
@@ -87,7 +87,7 @@ def cost(parameters, constants=None):
     print("%i : %f" % (config.iterations, fidelity))
     return figure_of_merit
 
-def single_run():
+def single_run(pbar=False):
     global config, _current_smooth_pulse, _current_drive_frequency, _smooth_time
     parameters = list(config.last_pulse)
     parameters.append(config.last_offset)
@@ -99,8 +99,8 @@ def single_run():
     offset = other_params[0]
     _current_drive_frequency = config.system.first_energy_spacing/3 - offset
 
-    time = np.linspace(0, config.time[-1], int(config.time[-1]*10))
-    solution = solver.time_evolve(H_d=config.system.H0, H_c=config.system.H1, pertubation_func=perturbation_func, tlist=time, starting_state = config.starting_state, args={}, pbar=False, store_states=False)
+    time = np.linspace(0, config.time[-1], int(config.time[-1]*50))
+    solution = solver.time_evolve(H_d=config.system.H0, H_c=config.system.H1, pertubation_func=perturbation_func, tlist=time, starting_state = config.starting_state, args={}, pbar=pbar, store_states=False)
     config.last_solution = solution
     config.last_offset = offset
     config.last_smooth_pulse = _current_smooth_pulse
